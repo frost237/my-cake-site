@@ -49,4 +49,39 @@ nav { display: flex; justify-content: space-between; align-items: center; paddin
     .hero h1 { font-size: 2.2rem; }
     .page-header h1 { font-size: 2rem; }
     .catalog-grid-main { padding: 20px 10px; }
+
+}
+
+/* --- АДАПТАЦІЯ ДЛЯ ТЕЛЕФОНІВ (PORTFOLIO) --- */
+@media (max-width: 768px) {
+    /* Робимо заголовок сторінки меншим */
+    .page-header {
+        padding: 100px 20px 30px;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    /* Налаштування сітки портфоліо */
+    .portfolio-grid {
+        grid-template-columns: 1fr; /* Тільки 1 колонка на мобільних */
+        gap: 15px;
+        padding: 20px 15px;
+    }
+
+    /* Зменшуємо висоту карток у портфоліо */
+    .portfolio-item {
+        height: 280px; /* Оптимальна висота для екрана смартфона */
+    }
+
+    /* Робимо оверлей (текст при наведенні) видимим відразу, 
+       бо на телефонах немає курсору (hover) */
+    .item-overlay {
+        opacity: 1;
+        background: rgba(214, 140, 140, 0.4); /* Робимо напівпрозорим */
+        font-size: 1.2rem;
+        align-items: flex-end; /* Текст буде знизу */
+        padding-bottom: 15px;
+    }
 }
