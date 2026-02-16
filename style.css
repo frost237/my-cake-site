@@ -2,7 +2,7 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Приховуємо кастомний курсор на телефонах, бо там немає мишки */
+/* Приховуємо кастомний курсор на тач-пристроях */
 @media (pointer: fine) {
     * { cursor: none; }
     .cursor { 
@@ -18,70 +18,67 @@ body { background: #fffafa; font-family: 'Montserrat', sans-serif; color: #4a4a4
 /* НАВІГАЦІЯ */
 nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; position: absolute; width: 100%; z-index: 100; flex-wrap: wrap; }
 .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #d68c8c; font-weight: bold; }
-.nav-links { display: flex; gap: 15px; margin-top: 10px; }
-.nav-links a { text-decoration: none; color: #333; font-weight: 600; font-size: 0.8rem; }
+.nav-links { display: flex; gap: 15px; }
+.nav-links a { text-decoration: none; color: #333; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+.nav-links a:hover { color: #d68c8c; }
 
 /* ГОЛОВНА */
 .hero { height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url('https://images.unsplash.com/photo-1535141192574-5d4897c12636?q=80&w=1500'); background-size: cover; background-position: center; text-align: center; padding: 0 20px; }
-.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 8vw, 4rem); color: #222; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 8vw, 4.5rem); color: #222; line-height: 1.2; }
 .hero h1 span { color: #d68c8c; font-style: italic; }
-.btn { display: inline-block; padding: 15px 35px; background: #d68c8c; color: white; text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 20px; }
+.btn { display: inline-block; padding: 15px 35px; background: #d68c8c; color: white; text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 25px; box-shadow: 0 10px 20px rgba(214,140,140,0.3); }
 
-/* СІТКИ (КАТАЛОГ ТА ПОРТФОЛІО) */
-.page-header { padding: 120px 20px 40px; text-align: center; background: #fdf1f1; }
+/* ЗАГОЛОВКИ СТОРІНОК */
+.page-header { padding: 120px 5% 40px; text-align: center; background: #fdf1f1; }
+.page-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 5vw, 3rem); }
+
+/* УНІВЕРСАЛЬНА СІТКА (КАТАЛОГ ТА ПОРТФОЛІО) */
 .catalog-grid-main, .portfolio-grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 20px; padding: 40px 5%; 
+    gap: 25px; 
+    padding: 40px 5%; 
+    max-width: 1200px; 
+    margin: 0 auto; 
 }
 
-/* КАРТКИ */
-.cake-item-card, .portfolio-item { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; }
-.cake-img-fix { width: 100%; height: 250px; object-fit: cover; display: block; }
-.cake-details { padding: 20px; }
-.price-tag { display: block; font-weight: 800; color: #d68c8c; margin: 10px 0; font-size: 1.1rem; }
-.order-small-btn { text-decoration: none; color: #d68c8c; border: 1px solid #d68c8c; padding: 8px 20px; border-radius: 50px; display: inline-block; }
-
-/* АДАПТАЦІЯ ДЛЯ ТЕЛЕФОНІВ */
-@media (max-width: 600px) {
-    nav { justify-content: center; text-align: center; }
-    .nav-links { gap: 10px; }
-    .hero h1 { font-size: 2.2rem; }
-    .page-header h1 { font-size: 2rem; }
-    .catalog-grid-main { padding: 20px 10px; }
-
+/* КАРТКИ ПОРТФОЛІО */
+.portfolio-item { 
+    height: 350px; 
+    border-radius: 15px; 
+    overflow: hidden; 
+    position: relative; 
+    background: #eee;
 }
+.portfolio-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.item-overlay { 
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(214, 140, 140, 0.7); 
+    display: flex; justify-content: center; align-items: center; 
+    color: white; font-family: 'Playfair Display', serif; font-size: 1.4rem;
+    opacity: 0; transition: 0.3s; 
+}
+.portfolio-item:hover .item-overlay { opacity: 1; }
 
-/* --- АДАПТАЦІЯ ДЛЯ ТЕЛЕФОНІВ (PORTFOLIO) --- */
+/* КАРТКИ КАТАЛОГУ */
+.cake-item-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: 0.3s; }
+.cake-img-fix { width: 100%; height: 220px; object-fit: cover; }
+.cake-details { padding: 20px; text-align: center; }
+.price-tag { display: block; font-weight: 800; color: #d68c8c; margin: 10px 0; font-size: 1.2rem; }
+.order-small-btn { text-decoration: none; color: #d68c8c; border: 1px solid #d68c8c; padding: 8px 20px; border-radius: 50px; font-weight: 600; display: inline-block; }
+
+/* АДАПТАЦІЯ ДЛЯ МОБІЛЬНИХ */
 @media (max-width: 768px) {
-    /* Робимо заголовок сторінки меншим */
-    .page-header {
-        padding: 100px 20px 30px;
-    }
+    nav { justify-content: center; gap: 10px; padding: 15px; }
+    .logo { width: 100%; text-align: center; margin-bottom: 5px; }
+    .nav-links { gap: 12px; }
+    .nav-links a { font-size: 0.75rem; }
 
-    .page-header h1 {
-        font-size: 2rem;
+    .catalog-grid-main, .portfolio-grid { 
+        grid-template-columns: 1fr; /* Один об'єкт на рядок */
+        padding: 20px 20px; 
     }
-
-    /* Налаштування сітки портфоліо */
-    .portfolio-grid {
-        grid-template-columns: 1fr; /* Тільки 1 колонка на мобільних */
-        gap: 15px;
-        padding: 20px 15px;
-    }
-
-    /* Зменшуємо висоту карток у портфоліо */
-    .portfolio-item {
-        height: 280px; /* Оптимальна висота для екрана смартфона */
-    }
-
-    /* Робимо оверлей (текст при наведенні) видимим відразу, 
-       бо на телефонах немає курсору (hover) */
-    .item-overlay {
-        opacity: 1;
-        background: rgba(214, 140, 140, 0.4); /* Робимо напівпрозорим */
-        font-size: 1.2rem;
-        align-items: flex-end; /* Текст буде знизу */
-        padding-bottom: 15px;
-    }
+    
+    .portfolio-item { height: 280px; }
+    .item-overlay { opacity: 1; background: rgba(214, 140, 140, 0.3); align-items: flex-end; padding-bottom: 20px; }
 }
